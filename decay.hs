@@ -3,13 +3,15 @@
 --Author: Derek Chaplin
 
 main = do
-	putStr "Hello World\n"
+	putStrLn "Welcome to Decay\n"
 	menu
 
-menu = putStr (
-	"Choose a thing:\n" ++
-	"[1] Test\n" ++
-	"[2] Test\n" ++
-	"[3] Test\n"
-	)
+menu = do
+	putStrLn "Choose a thing:"
+	putStrLn "[1] Test"
+	putStrLn "[2] Test"
+	putStrLn "[3] Test"
+	putStr "Choice: "
+	choice <- getLine
+	putStrLn ("You chose " ++ choice)
 
