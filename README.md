@@ -1,5 +1,6 @@
 ### Decay
-A superhero decision-based text adventure game written in Haskell.
+Developer: Derek Chaplin
+Description: A superhero decision-based text adventure game written in Haskell.
 
 This game will be heavily affected by choice but will also have aspects of it which will be set randomly such as certain choices you're given or certain characters you meet. So the game will be able to use some randomization to setup the game and then the player will make choices and certain choices/actions can trigger even more randomization. With this, the game could potentially be a unique story whenever you play again no matter what you choose.
 
