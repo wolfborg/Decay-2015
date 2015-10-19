@@ -2,27 +2,36 @@
 --Superhero Decision Game
 --Author: Derek Chaplin
 
---import Char
+
+data Menu = Menu {
+  text :: String,
+  choices :: [String],
+  responses :: [Menu]
+} deriving (Show)
 
 
-choices = []
+mainMenu = Menu "Welcome to Decay" [] [startMenu]
+startMenu = Menu "You Win. Play Again?" ["Back"] [mainMenu]
 
 main = do
-  putStrLn "Welcome to Decay\n"
-  choiceMenu
-
-choiceMenu = do
-  putStrLn "Choose a thing:"
-  putStrLn "[1] Test"
-  putStrLn "[2] Test"
-  putStr "Choice: "
+  printMenu mainMenu
   x <- getLine
-  putStrLn (choice x)
+  let y = choice mainMenu x
+  if y == "Error"
+    then printMenu mainMenu
+    else putStrLn y
 
-choice :: String->String
-choice input = case input of
-  "1" -> "Win"
-  "2" -> "Win2"
-  _ -> "Error"
 
-  
+printMenu menu = do 
+  putStrLn (text menu)
+  printChoices menu
+  putStr "Choice: "
+
+printChoices (Menu _ [] _) = return undefined
+printChoices (Menu t (c:cs) rs) = do
+  putStrLn c
+  printChoices (Menu t cs rs)
+
+choice menu "1" = ""
+choice menu "2" = ""
+choice menu x = "Error"
