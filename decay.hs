@@ -19,14 +19,21 @@ main = do
 --prints menu and asks for choice then prints next menu
 printMenu menu = do 
   putStrLn (text menu)
-  printChoices menu (index (choices menu))
-  putStrLn "Choice: "
-  --x <- getLine
-  --return x  --prints input
+  let indexes = index (choices menu)
+  printChoices menu indexes
+  putStr "Choice: "
+  x <- getLine
+  makeChoice x menu indexes
+  return undefined  --prints input
 
 --need a way to print and check choice indexes in order to grab response
 --also need a way to check if anything other than those choices is entered
 
+makeChoice x menu indexes = do
+  let y = (read x)
+  if y `elem` indexes
+    then printMenu ((responses menu)!!(y-1))
+    else putStrLn "Error"; printMenu menu
 
 printChoices (Menu _ [] _) _ = return undefined --empty list of choices
 printChoices (Menu t (c:cs) rs) (i:is) = do  --anything else, prints choices
