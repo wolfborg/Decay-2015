@@ -39,9 +39,11 @@ makeChoice "exit" _ _ = return undefined
 makeChoice x menu indexes = do
   let y = (read x)
   if y `elem` indexes
-    then printMenu ((responses menu)!!(y-1))
+    then do
+      putStrLn ("*********\n")
+      printMenu ((responses menu)!!(y-1))
     else do
-      putStrLn ("Error")
+      putStrLn ("***Error***\n")
       printMenu menu
 
 printChoices (Menu _ [] _) _ = return undefined --empty list of choices
