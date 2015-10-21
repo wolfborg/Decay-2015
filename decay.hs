@@ -10,7 +10,7 @@ data Menu = Menu {
 } deriving (Show)
 
 
-mainMenu = Menu "Welcome to Decay" ["Start"] [startMenu]
+mainMenu = Menu "Welcome to Decay" ["Start", "End","Test"] [startMenu]
 startMenu = Menu "You Win. Play Again?" ["Back"] [mainMenu]
 
 main = do
@@ -26,11 +26,9 @@ printMenu menu = do
 
 --need a way to print and check choice indexes in order to grab response
 --also need a way to check if anything other than those choices is entered
-  
 
-printChoices (Menu _ [] _) (i:is) = return undefined --empty list of choices
-printChoices (Menu t (c:cs) rs) [1] = do
-  putStrLn ("[1] " ++ c)
+
+printChoices (Menu _ [] _) _ = return undefined --empty list of choices
 printChoices (Menu t (c:cs) rs) (i:is) = do  --anything else, prints choices
   putStr ("[" ++ (show i) ++ "] ")
   putStrLn c --prints a choice, but we want numbers with it
