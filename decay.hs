@@ -19,9 +19,11 @@ main = do
 
 --prints menu and asks for choice then prints next menu
 printMenu menu = do 
-  putStrLn (text menu)
+  putStrLn ((text menu) ++ "\n")
   let indexes = index (choices menu)
+  putStrLn "Options:"
   printChoices menu indexes
+  putStrLn "\n[Exit] End the game\n"
   putStr "Choice: "
   x <- getLine
   putStrLn ""
