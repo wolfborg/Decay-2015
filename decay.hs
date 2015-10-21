@@ -10,28 +10,33 @@ data Menu = Menu {
 } deriving (Show)
 
 
-mainMenu = Menu "Welcome to Decay" ["Start"] [startMenu]
+mainMenu = Menu "Welcome to Decay" ["Start", "Exit","Test"] [startMenu]
 startMenu = Menu "You Win. Play Again?" ["Back"] [mainMenu]
 
 main = do
   printMenu mainMenu
   
-
+--prints menu and asks for choice then prints next menu
 printMenu menu = do 
   putStrLn (text menu)
-  printChoices menu
-  putStr "Choice: "
-  x <- getLine
-  let y = choice menu x
-  if y == "Error"
-    then printMenu menu
-    else putStrLn y
+  let indexes = [1 .. length ((choices menu)!!1)]
+  printChoices menu indexes
+  --putStr "Choice: "
+  --x <- getLine
+  --return x  --prints input
 
-printChoices (Menu _ [] _) = return undefined
-printChoices (Menu t (c:cs) rs) = do
-  putStrLn c
-  printChoices (Menu t cs rs)
+--need a way to print and check choice indexes in order to grab response
+--also need a way to check if anything other than those choices is entered
 
-choice menu "1" = "test"
---choice menu "2" = ""
-choice menu x = "Error"
+
+printChoices (Menu _ [] _) (i:is) = return undefined --empty list of choices
+printChoices (Menu t (c:cs) rs) (i:is) = do  --anything else, prints choices
+  let x = i
+  putStr ("[" ++ (show x) ++ "] ")
+  putStrLn c --prints a choice, but we want numbers with it
+  printChoices (Menu t cs rs) is  --prints next choice, cutting off the head
+
+--returns a list of indexes+1 for an array
+index :: [a] -> [Int]
+index x = [1 .. length x]
+
