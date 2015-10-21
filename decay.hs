@@ -2,8 +2,6 @@
 --Superhero Decision Game
 --Author: Derek Chaplin
 
-import System.Exit
-
 data Menu = Menu {
   text :: String,
   choices :: [String],
