@@ -32,18 +32,22 @@ printMenu menu = do
 --also need a way to check if anything other than those choices is entered
 
 makeChoice "Exit" _ _ = return undefined
+makeChoice "EXIT" _ _ = return undefined
 makeChoice "exit" _ _ = return undefined
 makeChoice x menu indexes = do
   let y = (read x)
   if y `elem` indexes
     then printMenu ((responses menu)!!(y-1))
-    else putStrLn "Error"; printMenu menu
+    else do
+      putStrLn ("Error")
+      printMenu menu
 
 printChoices (Menu _ [] _) _ = return undefined --empty list of choices
 printChoices (Menu t (c:cs) rs) (i:is) = do  --anything else, prints choices
   putStr ("[" ++ (show i) ++ "] ")
   putStrLn c --prints a choice, but we want numbers with it
   printChoices (Menu t cs rs) is  --prints next choice, cutting off the head
+
 
 --returns a list of indexes+1 for an array
 index :: [a] -> [Int]
