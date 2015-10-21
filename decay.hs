@@ -10,7 +10,7 @@ data Menu = Menu {
 } deriving (Show)
 
 
-mainMenu = Menu "Welcome to Decay" ["Start", "Exit","Test"] [startMenu]
+mainMenu = Menu "Welcome to Decay" ["Start"] [startMenu]
 startMenu = Menu "You Win. Play Again?" ["Back"] [mainMenu]
 
 main = do
@@ -19,7 +19,7 @@ main = do
 --prints menu and asks for choice then prints next menu
 printMenu menu = do 
   putStrLn (text menu)
-  let indexes = [1 .. length ((choices menu)!!1)]
+  let indexes = [1 .. 10]  --now just is an array of numbers just to be used to print out in the menu
   printChoices menu indexes
   --putStr "Choice: "
   --x <- getLine
