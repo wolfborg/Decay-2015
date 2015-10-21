@@ -2,6 +2,7 @@
 --Superhero Decision Game
 --Author: Derek Chaplin
 
+import System.Exit
 
 data Menu = Menu {
   text :: String,
@@ -10,7 +11,7 @@ data Menu = Menu {
 } deriving (Show)
 
 
-mainMenu = Menu "Welcome to Decay" ["Start", "End","Test"] [startMenu]
+mainMenu = Menu "Welcome to Decay" ["Start"] [startMenu]
 startMenu = Menu "You Win. Play Again?" ["Back"] [mainMenu]
 
 main = do
@@ -23,12 +24,15 @@ printMenu menu = do
   printChoices menu indexes
   putStr "Choice: "
   x <- getLine
+  putStrLn ""
   makeChoice x menu indexes
   return undefined  --prints input
 
 --need a way to print and check choice indexes in order to grab response
 --also need a way to check if anything other than those choices is entered
 
+makeChoice "Exit" _ _ = return undefined
+makeChoice "exit" _ _ = return undefined
 makeChoice x menu indexes = do
   let y = (read x)
   if y `elem` indexes
