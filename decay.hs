@@ -11,8 +11,12 @@ data Menu = Menu {
 } deriving (Show)
 
 
-mainMenu = Menu "Welcome to Decay" ["Start"] [startMenu]
-startMenu = Menu "You Win. Play Again?" ["Back"] [mainMenu]
+mainMenu = Menu "Welcome to Decay" ["Start"] [menu1]
+endMenu = Menu "You Win! Play Again?" ["Play Again"] [mainMenu]
+menu1 = Menu "You are a superhero. What is your power?" ["Spider-powers", "Invisibility", "I have a lot of money"] [spiderman1, invisible1, batman1]
+spiderman1 = Menu "You are Spider-Man, or at least a cheap rip-off of him.\nUsing your spider-senses, speed, and webs, you fight crime and deliver pizzas in New York City.\nYou also used to have an Uncle Ben." ["End"] [endMenu]
+invisible1 = Menu "You have the power of invisibility, which could be very dangerous in the wrong hands.\nTry not to get into too much trouble." ["End"] [endMenu]
+batman1 = Menu "You are Batman.\nYou have a lot of money but that can't buy your parents back to life.\nInstead you bought some bat-themed gadgets and clean up the streets of Gotham at night." ["End"] [endMenu]
 
 main = do
   clearScreen
