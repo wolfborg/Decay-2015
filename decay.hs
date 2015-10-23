@@ -12,7 +12,7 @@ data Menu = Menu {
 
 
 mainMenu = Menu "Welcome to Decay" ["Start"] [menu1]
-endMenu = Menu "You Win! Play Again?" ["Play Again"] [mainMenu]
+endMenu = Menu "You Win! Play Again?" ["Play Again"] [menu1]
 menu1 = Menu "You are a superhero. What is your power?" ["Spider-powers", "Invisibility", "I have a lot of money"] [spiderman1, invisible1, batman1]
 spiderman1 = Menu "You are Spider-Man, or at least a cheap rip-off of him.\nUsing your spider-senses, speed, and webs, you fight crime and deliver pizzas in New York City.\nYou also used to have an Uncle Ben." ["End"] [endMenu]
 invisible1 = Menu "You have the power of invisibility, which could be very dangerous in the wrong hands.\nTry not to get into too much trouble." ["End"] [endMenu]
