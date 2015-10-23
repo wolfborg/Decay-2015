@@ -2,6 +2,8 @@
 --Superhero Decision Game
 --Author: Derek Chaplin
 
+import System.Console.ANSI
+
 data Menu = Menu {
   text :: String,
   choices :: [String],
@@ -13,6 +15,7 @@ mainMenu = Menu "Welcome to Decay" ["Start"] [startMenu]
 startMenu = Menu "You Win. Play Again?" ["Back"] [mainMenu]
 
 main = do
+  clearScreen
   printMenu mainMenu
 
 --prints menu and asks for choice then prints next menu
@@ -35,13 +38,15 @@ makeChoice "Exit" _ _ = return undefined
 makeChoice "EXIT" _ _ = return undefined
 makeChoice "exit" _ _ = return undefined
 makeChoice x menu indexes = do
+  clearScreen
   let y = (read x)
   if y `elem` indexes
     then do
-      putStrLn ("*********\n")
+      putStrLn ("[" ++ x ++ "] " ++ ((choices menu)!!(y-1)))
+      putStrLn ("*********")
       printMenu ((responses menu)!!(y-1))
     else do
-      putStrLn ("***Error***\n")
+      putStr ("***Error: Invalid Input***\n")
       printMenu menu
 
 printChoices (Menu _ [] _) _ = return undefined --empty list of choices
