@@ -19,7 +19,6 @@ invisible1 = Menu "You have the power of invisibility, which could be very dange
 batman1 = Menu "You are Batman.\nYou have a lot of money but that can't buy your parents back to life.\nInstead you bought some bat-themed gadgets and clean up the streets of Gotham at night." ["End"] [endMenu]
 
 main = do
-  clearScreen
   printMenu mainMenu
 
 --prints menu and asks for choice then prints next menu
@@ -42,7 +41,6 @@ makeChoice "Exit" _ _ = return undefined
 makeChoice "EXIT" _ _ = return undefined
 makeChoice "exit" _ _ = return undefined
 makeChoice x menu indexes = do
-  clearScreen
   let y = (read x)
   if y `elem` indexes
     then do
